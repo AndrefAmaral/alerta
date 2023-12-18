@@ -1,11 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
 
 export default function App() {
+  
+  const [nome, setNome] = useState("")
+  
+  function alerta(){
+    if(nome=="" || !nome){
+      alert("Digite o nome!")
+      return
+    }
+    alert("Olá, " + nome + "! Seja bem-vindo(a)!")
+  }
+  
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
+      <Text style={styles.titulo}>App de alerta</Text>
+
+      <TextInput 
+        style={styles.campo} 
+        placeholder='Digite o seu nome' 
+        value={nome}
+        onChangeText={(nome)=> setNome(nome)} 
+      />
+
+      <TouchableOpacity style={styles.botao} onPress={alerta}>
+        <Text style={styles.textoBotao}>Mostrar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -13,8 +36,34 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
+    padding: 10
+  },
+  titulo:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign:'center',
+    marginTop: 20,
+    marginBottom: 10
+  },
+  campo:{
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: '#000000',
+    color: '#ffffff',
+    padding: 10,
+    margin: 10
+  },
+  botao:{
+    backgroundColor: '#41AEF4',
+    borderRadius: 10,
+    margin: 10,
+    padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textoBotao:{
+    color: '#ffffff',
+    fontSize: 17
+  }
 });
