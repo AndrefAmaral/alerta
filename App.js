@@ -6,12 +6,14 @@ export default function App() {
   
   const [nome, setNome] = useState("")
   
-  function alerta(){
-    if(nome=="" || !nome){
-      alert("Digite o nome!")
+  function emitirAlerta(){
+    const regexIsBlank = /^\s*$/
+    //  /^\s*$/.test(nome)
+    if(regexIsBlank.test(nome) ){
+      alert("Digite um nome" + nome)
       return
     }
-    alert("Olá, " + nome + "! Seja bem-vindo(a)!")
+    alert("Olá, " + nome + "! Seja bem-vindo(a)")
   }
   
   return (
@@ -21,12 +23,12 @@ export default function App() {
 
       <TextInput 
         style={styles.campo} 
-        placeholder='Digite o seu nome' 
+        placeholder='Digite o seu nome'
         value={nome}
         onChangeText={(nome)=> setNome(nome)} 
       />
 
-      <TouchableOpacity style={styles.botao} onPress={alerta}>
+      <TouchableOpacity style={styles.botao} onPress={emitirAlerta}>
         <Text style={styles.textoBotao}>Mostrar</Text>
       </TouchableOpacity>
     </View>
@@ -49,8 +51,6 @@ const styles = StyleSheet.create({
   campo:{
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: '#000000',
-    color: '#ffffff',
     padding: 10,
     margin: 10
   },
